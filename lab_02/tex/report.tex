@@ -1,0 +1,231 @@
+\documentclass[12pt,a4paper]{scrreprt}
+
+\include{preambule.inc}
+
+\begin{document}
+	
+%\def\chaptername{} % убирает "Глава"
+\thispagestyle{empty}
+\begin{titlepage}
+	\normalsize
+	\noindent \begin{minipage}{0.15\textwidth}
+		\includegraphics[width=\linewidth]{pics/logo}
+	\end{minipage}
+	\noindent\begin{minipage}{0.9\textwidth}\centering
+		\textbf{Министерство науки и высшего образования Российской Федерации}\\
+		\textbf{Федеральное государственное бюджетное образовательное учреждение высшего образования}\\
+		\textbf{~~~«Московский государственный технический университет имени Н.Э.~Баумана}\\
+		\textbf{(национальный исследовательский университет)»}\\
+		\textbf{(МГТУ им. Н.Э.~Баумана)}
+	\end{minipage}
+	
+	\noindent\rule{17cm}{3pt}
+	\newline
+	\noindent ФАКУЛЬТЕТ $\underline{\text{«Информатика и системы управления»}}$ \newline
+	\noindent КАФЕДРА $\underline{\text{«Программное обеспечение ЭВМ и информационные технологии»}}$\newline\newline\newline\newline\newline
+	
+	\begin{center}
+		\noindent\begin{minipage}{1.3\textwidth}\centering
+			\Large\textbf{Отчёт по лабораторной работе №2}\newline
+			\textbf{по курсу}\newline
+			\textbf{<<Математическая статистика>>}\newline
+		\end{minipage}
+	\end{center}
+	
+	~\\\\\\\\\\\\\\
+	\normalsize
+	\noindent\textbf{Тема } $\underline{\text{Интервальные оценки}}$\newline\newline
+	\noindent\textbf{Студент } $\underline{\text{Сироткина П.Ю.}}$\newline\newline
+	\noindent\textbf{Группа } $\underline{\text{ИУ7-66Б}}$\newline\newline
+	\noindent\textbf{Вариант } $\underline{\text{12}}$\newline\newline
+	\noindent\textbf{Преподаватель } $\underline{\text{Андреева Т.В.}}$\newline
+	
+	\begin{center}
+		\vfill
+		Москва~---~\the\year
+		~г.
+	\end{center}
+\end{titlepage}
+
+\chapter*{Лабораторная работа №2}
+
+\section*{1. Цель работы}
+
+Построение доверительных интервалов для математического ожидания и дисперсии нормальной случайной величины.
+
+\section*{2. Содержание работы}
+
+\begin{enumerate}
+	\item Для выборки объема n из нормальной генеральной совокупности X реализовать в виде программы на ЭВМ:
+	\begin{itemize}
+		\item Вычисление точечных оценок $\hat\mu(\vec{X_n})$ и $S^2(\vec{X_n}) $ математического ожидания MX и дисперсии DX соответственно;
+		\item Вычисление нижней и верхней границ $\underline{\mu}(\vec{X_n})$, $\overline{\mu}(\vec{X_n})$ для $\gamma$-доверительного интервала для математического ожидания MX;
+		\item Вычисление нижней и верхней границ $\underline{\sigma}^2(\vec{X_n})$, $\overline{\sigma}^2(\vec{X_n})$ для $\gamma$-доверительного интервала для дисперсии DX.
+	\end{itemize}
+	\item Вычислить $\hat\mu$ и $S^2$ для выборки из индивидуального варианта;
+	\item Для заданного пользователем уровня доверия $\gamma$ и N - объема выборки из индивидуального варианта:
+	\begin{itemize}
+		\item На координатной плоскости $Oyn$ построить прямую $y = \hat\mu(\vec{x}_N)$, также графики функций $y = \underline{\mu}(\vec{x}_n)$, $y = \overline{\mu}(\vec{x}_n)$ как функций объема выборки, где n изменяется от 1 до N.
+		\item На другой координатной плоскости $Ozn$ построить прямую $y = S^2(\vec{x}_N)$, также графики функций $y = \underline{\sigma}^2(\vec{x}_n)$, $y = \overline{\sigma}^2(\vec{x}_n)$ как функций объема выборки, где n изменяется от 1 до N.
+	\end{itemize}
+\end{enumerate}
+
+\section*{3. Теоретические сведения}
+
+\subsection*{Определение $\gamma$-доверительного интервала для значения параметра распределения случайной величины}
+
+Пусть дана случайная величина $X$, закон распределения которой известен с точностью до неизвестного параметра $\theta$.
+
+\textit{Интервальной оценкой} параметра $\theta$ уровня $\gamma$ называют пару статистик $\underline{\theta}(\vec X)$ и $\overline{\theta}(\vec X)$, таких, что $P\{\theta \in (\underline{\theta}(\vec X); \overline{\theta}(\vec X))\} = \gamma.$
+
+$\gamma$-\textit{доверительным интервалом} для параметра $\theta$ называют реализацию (выборочное значение) интервальной оценки уровня $\gamma$ для этого параметра, т.е. интервал вида ($\underline{\theta}(\vec X); \overline{\theta}(\vec X)$) с детерминированными границами.
+
+\subsection*{Формулы для вычисления границ $\gamma$-доверительного интервала для математического ожидания и дисперсии нормальной случайной величины}
+
+Формулы для вычисления границ $\gamma$-доверительного интервала для математического ожидания:
+
+\begin{equation*}
+	\underline{\mu}(\vec{X_n}) = \overline{X} - \frac{S(\vec{X})\cdot t_{\frac{1+\gamma}{2}}}{\sqrt{n}} 
+\end{equation*}
+
+\begin{equation*}
+	\overline{\mu}(\vec{X_n}) = \overline{X} + \frac{S(\vec{X})\cdot t_{\frac{1+\gamma}{2}}}{\sqrt{n}} 
+\end{equation*}
+
+Формулы для вычисления границ $\gamma$-доверительного интервала для дисперсии:
+
+\begin{equation*}
+	\underline{\sigma}(\vec{X_n}) = \frac{(n - 1) \cdot S^2(\vec{X})}{h_\frac{1+\gamma}{2}}
+\end{equation*}
+
+\begin{equation*}
+	\overline{\sigma}(\vec{X_n}) = \frac{(n - 1) \cdot S^2(\vec{X})}{h_\frac{1-\gamma}{2}}
+\end{equation*}
+
+Обозначения:
+
+\begin{itemize}
+	\item $\vec{X} = \frac{1}{n} \cdot \sum_{1}^{n} X_i$ - точечная оценка математического ожидания;
+	\item $S^2(\vec{X}) = \frac{1}{n-1}\cdot \sum_{1}^{n} (X_i - \overline{X})^2$ - исправленная точечная оценка дисперсии;
+	\item n - объем выборки;
+	\item $\gamma$ - уровень доверия;
+	\item $t_\alpha$ - квантиль уровня $\alpha$ распределения Стьюдента с n - 1 степенями свободы (St(n-1));
+	\item $h_\alpha$ - квантиль уровня $\alpha$ распределения Хи-квадрат с n - 1 степенями свободы ($\chi^2(n-1)$).
+\end{itemize}
+
+\clearpage
+\section*{4. Текст программы}
+
+\begin{lstlisting}[language=]
+function main()
+		pkg load statistics
+		pkg load symbolic
+		X = [11.89, 9.60,  9.29,  10.06, 9.50,  8.93,  9.58,  6.81,  8.69,...
+		9.62,  9.01,  10.59, 10.50, 11.53, 9.94,  8.84,  8.91,  6.90,...
+		9.76,  7.09,  11.29, 11.25, 10.84, 10.76, 7.42,  8.49,  10.10,...
+		8.79,  11.87, 8.77,  9.43,  12.41, 9.75,  8.53,  9.72,  9.45,...
+		7.20,  9.23,  8.93,  9.15,  10.19, 9.57,  11.09, 9.97,  8.81,...
+		10.73, 9.57,  8.53,  9.21,  10.08, 9.10,  11.03, 10.10, 9.47,...
+		9.72,  9.60,  8.21,  7.78,  10.21, 8.99,  9.14,  8.60,  9.14,...
+		10.95, 9.33,  9.98,  9.09,  10.35, 8.61,  9.35,  10.04, 7.85,...
+		9.64,  9.99,  9.65,  10.89, 9.08,  8.60,  7.56,  9.27,  10.33,...
+		10.09, 8.51,  9.86,  9.24,  9.63,  8.67,  8.85,  11.57, 9.85,...
+		9.27,  9.69,  10.90, 8.84,  11.10, 8.19,  9.26,  9.93,  10.15,...
+		8.42,  9.36,  9.93,  9.11,  9.07,  7.21,  8.22,  9.08,  8.88,...
+		8.71,  9.93,  12.04, 10.41, 10.80, 7.17,  9.00,  9.46,  10.42,...
+		10.43, 8.38,  9.01]
+
+		% Уровень доверия
+		gamma = 0.9;
+		%gamma = input('Введите уровень доверия: ')
+		% Объем выборки 
+		N = length(X);
+		% Точечная оценка мат. ожидания
+		M = my_mean(X);
+		% Точечная оценка дисперсии
+		S2 = my_var(X, M);
+		% Нижняя граница доверительного интервала для мат. ожидания
+		M_low = find_m_low(N, M, S2, gamma);
+		% Верхняя граница доверительного интервала для мат. ожидания
+		M_high = find_m_high(N, M, S2, gamma);
+		% Нижняя граница доверительного интервала для дисперсии
+		S2_low = find_S2_low(N, S2, gamma);
+		% Верхняя граница доверительного интервала для дисперсии
+		S2_high = find_S2_high(N, S2, gamma);
+
+		% Вывод полученных ранее значений
+		fprintf('Точечная оценка математического ожидания = %.3f\n', M);
+		fprintf('Точечная оценка дисперсии = %.3f\n', S2);
+		fprintf('Нижняя граница доверительного интервала для математического ожидания = %.3f\n', M_low);
+		fprintf('Верхняя граница доверительного интервала для математического ожидания = %.3f\n', M_high);
+		fprintf('Нижняя граница доверительного интервала для дисперсии = %.3f\n', S2_low);
+		fprintf('Верхняя граница доверительного интервала для дисперсии = %.3f\n', S2_high);
+
+		% Массив точечных оценок для математического ожидания
+		M_array = zeros(1, N)
+		% Массив точечных оценок для дисперсии
+		S2_array = zeros(1, N)
+		% Массивы для нижних и верхних границ для математического ожидания
+		M_low_array = zeros(1, N)
+		M_high_array = zeros(1, N)
+		% Массивы для нижних и верхних границ для дисперсии
+		S2_low_array = zeros(1, N)
+		S2_high_array = zeros(1, N)
+
+		for i = 1 : N
+		temp_m = mean(X(1:i));
+		temp_s2 = var(X(1:i));
+		M_array(i) = temp_m;
+		S2_array(i) = temp_s2;
+		M_low_array(i) = find_m_low(i, temp_m, temp_s2, gamma);
+		M_high_array(i) = find_m_high(i, temp_m, temp_s2, gamma);
+		S2_low_array(i) = find_S2_low(i, temp_s2, gamma);
+		S2_high_array(i) = find_S2_high(i, temp_s2, gamma);
+		end
+		
+		% Построение графиков
+		plot(1 : N, [(zeros(1, N) + M)', M_array', M_low_array', M_high_array']);
+		xlabel('n');
+		ylabel('y');
+		legend('f1', 'f2', 'f3', 'f4');
+		
+		figure;
+		
+		plot(1 : N, [(zeros(1, N) + S2)', S2_array', S2_low_array', S2_high_array']);
+		xlabel('n');
+		ylabel('z');
+		legend('g1', 'g2', 'g3', 'g4');
+		end
+
+% Функция вычисления точечной оценки для математического ожидания
+function M = my_mean(X)
+		M = sum(X) / length(X)
+end
+% Функция вычисления точечной оценки для дисперсии
+function S2 = my_var(X, M)
+		S2 = sum(X - M) .^2
+		if (length(X) > 1)
+		S2 = S2 / (length(X) - 1)
+		end
+end
+% Функция поиска нижней границы доверительного интервала для математического ожидания
+function M_low = find_m_low(N, M, S2, gamma)
+		M_low = M - sqrt(S2) * tinv((1 + gamma) / 2, N - 1) / sqrt(N);
+end
+% Функция поиска верхней границы доверительного интервала для математического ожидания
+function M_high = find_m_high(N, M, S2, gamma)
+		M_high = M + sqrt(S2) * tinv((1 + gamma) / 2, N - 1) / sqrt(N);
+end
+% Функция поиска нижней границы доверительного интервала для дисперсии
+function S2_low = find_S2_low(N, S2, gamma)
+		S2_low = ((N - 1) * S2) / chi2inv((1 + gamma) / 2, N - 1);
+end
+% Функция поиска верхней границы доверительного интервала для дисперсии
+function S2_high = find_S2_high(N, S2, gamma)
+		S2_high = ((N - 1) * S2) / chi2inv((1 - gamma) / 2, N - 1);
+end
+\end{lstlisting}
+
+\section*{5. Результат расчетов и графики для выборки из индивидуального варианта (при построении графиков принять $\gamma$ = 0.9)}
+
+\end{document}
